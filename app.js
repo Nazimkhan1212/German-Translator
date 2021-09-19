@@ -1,27 +1,26 @@
-var textInput = document.querySelector("#txt-input");
-var btnTranslation = document.querySelector("#btn-translation");
-var textOutput = document.querySelector("#txt-output");
+var btnTranslate = document.querySelector("#btn-translation");
+var btnInput = document.querySelector("#txt-input");
+var btnOutput = document.querySelector("#txt-output");
 
 var serverURL = "https://api.funtranslations.com/translate/german-accent.json"
 
-function getTranslation (text){
+
+function getTranslate(text){
     return serverURL + "?" + "text=" + text
 }
 
 function errorHandler(error){
-    alert("something went wrong");
-
+    alert("something wrong");
 }
 
 function clickHandler(){
-    var inputText = textInput.value;
-    fetch(getTranslation(inputText))
+    var inputText = btnInput.value;
+    fetch(getTranslate(inputText))
         .then(response => response.json())
-        .then(json => {
+        .then(json =>{
             var translatedtext = json.contents.translated;
-            textOutput.innerText = translatedtext;
+            btnOutput.innerText = translatedtext;
     })
     .catch(errorHandler)
-
 };
-btnTranslation.addEventListener("click", clickHandler);
+btnTranslate.addEventListener("click" ,clickHandler)
